@@ -6,17 +6,14 @@ export default class GameSavingLoader {
     const readPromise = read();
 
     readPromise.then((response) => {
-      // получили результат первого Promise
-      console.log(response); 
       return json(response);
     }).then((value) => {
-      // получили результат второго Promise
+
+      // получаю данные 
       console.log(value);
-      return value;
+      return value; 
     }).catch((error) => {
       console.log(error);
-    }).finally(() => {
-      console.log('promise finished!')
     })
   }
 }
