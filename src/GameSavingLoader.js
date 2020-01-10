@@ -2,18 +2,17 @@ import read from './reader';
 import json from './parser';
 
 export default class GameSavingLoader {
+  // eslint-disable-next-line class-methods-use-this
   load() {
     const readPromise = read();
-
-    readPromise.then((response) => {
-      return json(response);
-    }).then((value) => {
-
-      // получаю данные 
-      console.log(value);
-      return value; 
-    }).catch((error) => {
-      console.log(error);
-    })
+    readPromise.then((response) => json(response))
+      .then((value) => {
+        return new Promise((resolve, reject) => {
+          resolve(JSON.parse(value));
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
