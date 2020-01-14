@@ -1,8 +1,6 @@
 import GameSavingLoader from '../src/GameSavingLoader';
 
-test('load game', async () => {
-  const loader = new GameSavingLoader();
-  const data = await loader.load();
+test('load game', () => {
   const expected = {
     id: 9,
     created: 1546300800,
@@ -13,5 +11,7 @@ test('load game', async () => {
       points: 2000,
     },
   };
-  expect(data).toEqual(expected);
+  GameSavingLoader.load().then((data) => {
+    expect(data).toEqual(expected);
+  });
 });
